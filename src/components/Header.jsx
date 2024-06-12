@@ -6,6 +6,8 @@ import { SlBasket } from "react-icons/sl";
 import { IoMoon } from "react-icons/io5";
 import { CiLight } from "react-icons/ci";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Header = () => {
   const [theme, setTheme] = useState(true);
@@ -29,9 +31,10 @@ const Header = () => {
         alignItems: "center",
       }}
     >
-      <div className="flex-col">
-       { theme ? <img className="logo" src={logo} alt="" /> : <img className="logo" src={logo2} alt="" />}
-        <p className="logo-text">Veysel</p>
+      <div className="flex-col" onClick={() => window.location.reload()}>
+       <Link to="/">{ theme ? <img className="logo" src={logo} alt="" /> : <img className="logo" src={logo2} alt="" />}
+      </Link>
+      <p className="logo-text">Veysel</p>
       </div>
       <div>
         <div className="flex-row">

@@ -1,30 +1,31 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProducts, setSelectedProduct } from "../features/productSlicer";
+import {  setSelectedProduct } from "../features/productSlicer";
+
+
 
 import "../css/ProductDetail.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  
+  const { products, selectedProduct } = useSelector((store) => store.products);
+  const { title, price, description, category, image } = selectedProduct;
   const dispatch = useDispatch();
-  const { products, selectedProduct, loading } = useSelector((state) => state.products);
-
   useEffect(() => {
-  getProductsById();
+  getProductById();
   }, []);
 
-  const getProductsById = () => {
-    if (products.id === id) {
-      dispatch(setSelectedProduct(products));
-        
+  const getProductById = () => {
+    const product = products.find((product) => product.id.toString() === id);
+    if (product) {
+      dispatch(setSelectedProduct(product));
     }
-    
   }
 
-  
-
-  const { title, price, description, category, image } = selectedProduct;
+ 
+  console.log(title);
 
   return (
     <div className="product-details">

@@ -1,19 +1,11 @@
 
 import './App.css';
-import { useSelector } from 'react-redux';
+import React from 'react'
 
-
-function App() {
-
-  const { value } = useSelector((state) => state.counter)
-  console.log(value);
+const App = () => {
   return (
-    <>
-
-    <h1>Hello World</h1>
-    
-    </>
-  );
+    <div>App</div>
+  )
 }
 
-export default App;
+export default App

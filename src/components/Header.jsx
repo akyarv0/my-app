@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
+import logo2 from "../assets/images/logo2.png";
 import "../css/Header.css";
 import { SlBasket } from "react-icons/sl";
 import { IoMoon } from "react-icons/io5";
@@ -29,7 +30,7 @@ const Header = () => {
       }}
     >
       <div className="flex-col">
-        <img className="logo" src={logo} alt="" />
+       { theme ? <img className="logo" src={logo} alt="" /> : <img className="logo" src={logo2} alt="" />}
         <p className="logo-text">Veysel</p>
       </div>
       <div>

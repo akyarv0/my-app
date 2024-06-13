@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toastSuccessNotify } from "../helpers/ToastNotify";
+import { toastWarnNotify } from "../helpers/ToastNotify";
 
 const getBasketFromStorage = () => {
   if (localStorage.getItem("basket")) {
@@ -38,6 +40,8 @@ export const basketSlicer = createSlice({
         state.products = [...state.products, action.payload];
         writeFromBasketToStorage(state.products);
       }
+
+      toastSuccessNotify("Product added successfully");
     },
     setDrawer: (state) => {
       state.drawer = !state.drawer;
@@ -54,6 +58,7 @@ export const basketSlicer = createSlice({
       );
       state.products = newBasket;
       writeFromBasketToStorage(state.products);
+      toastWarnNotify("Product deleted successfully");
     },
   },
 });

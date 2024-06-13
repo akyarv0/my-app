@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setDrawer, calculateBasketTotal , deleteFromBasket} from "../features/basketSlicer";
 import "../css/Drawer.css";
+import { toast } from "react-toastify";
 
 const BasketDrawer = () => {
   const { products, drawer, total } = useSelector((store) => store.basket);

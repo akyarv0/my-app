@@ -11,7 +11,7 @@ import "../css/ProductDetail.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
 
   

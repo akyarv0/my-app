@@ -5,6 +5,7 @@ import { setSelectedProduct } from "../features/productSlicer";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 import { useState } from "react";
+import { addToBasket } from "../features/basketSlicer";
 
 import "../css/ProductDetail.css";
 
@@ -12,18 +13,13 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [count, setCount] = useState(0);
 
-  const { basket } = useSelector((state) => state.basket); 
 
-
-  const addToBasket = () => {
-  const addedProduct = {...basket, id, title, price, image, count};
-  console.log(addedProduct);
-   
-  }
-
-    
   
 
+ const handleAddToBasket = () => {
+  const payload = { id, title, price, image, count };
+  dispatch(addToBasket(payload));
+};
 
   const { products, selectedProduct } = useSelector((store) => store.products);
   const { title, price, description, category, image } = selectedProduct;
@@ -88,7 +84,9 @@ const ProductDetails = () => {
             />
           </div>
           <div>
-            <button className="details-button" onClick={addToBasket} >Add to cart</button>
+            <button className="details-button" onClick={handleAddToBasket}>
+              Add to cart
+            </button>
           </div>
           <p className="product-description">{description}</p>
           <p className="product-category">Category: {category}</p>

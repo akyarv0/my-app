@@ -7,18 +7,23 @@ import { IoMoon } from "react-icons/io5";
 import { CiLight } from "react-icons/ci";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Basket from "./Basket";
+import { useSelector } from "react-redux";
+
 import Badge from '@mui/material/Badge';
+
 
 
 const Header = () => {
   const [theme, setTheme] = useState(true);
 
-  const [showBasket, setShowBasket] = useState(false);
 
-  const toggleBasket = () => {
-    setShowBasket(!showBasket);
-  };
+const {products} = useSelector((store) => store.basket);
+
+
+  
+
+
+
   const changeTheme = () => {
     const root = document.getElementById("root");
   
@@ -50,8 +55,8 @@ const Header = () => {
       <div>
         <div className="flex-row">
           <input className="search-input" type="text" placeholder="Search" />{" "}
-          <Badge badgeContent={4} color="success"> <SlBasket className="icons" style={{ marginLeft: "10px" }} onClick={toggleBasket}/>
-          {showBasket && <Basket toggleBasket={toggleBasket} />}
+          <Badge badgeContent={products.length} color="success"> <SlBasket className="icons" style={{ marginLeft: "10px" }} />
+          
           </Badge>
 
           {theme ? 

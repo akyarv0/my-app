@@ -2,8 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f8f9fa;
+    height: 100vh;
+  
+   
+  
   }
   
   .product-card {
@@ -15,7 +17,10 @@
     padding: 20px;
     margin: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    width: 100%;
+    max-width: 500px;
+
+
   }
   
   .product-image {

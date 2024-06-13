@@ -19,6 +19,7 @@ const ProductDetails = () => {
  const handleAddToBasket = () => {
   const payload = { id, title, price, image, count };
   dispatch(addToBasket(payload));
+setCount(0);
 };
 
   const { products, selectedProduct } = useSelector((store) => store.products);
@@ -33,6 +34,8 @@ const ProductDetails = () => {
     if (product) {
       dispatch(setSelectedProduct(product));
     }
+  
+    
   };
 
   console.log(title);

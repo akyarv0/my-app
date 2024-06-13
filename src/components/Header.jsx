@@ -8,6 +8,8 @@ import { CiLight } from "react-icons/ci";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { setDrawer } from "../features/basketSlicer";
+import { useDispatch } from "react-redux";
 
 import Badge from '@mui/material/Badge';
 
@@ -17,7 +19,11 @@ const Header = () => {
   const [theme, setTheme] = useState(true);
 
 
-const {products} = useSelector((store) => store.basket);
+const {products, drawer} = useSelector((store) => store.basket);
+
+const dispatch = useDispatch();
+
+
 
 
   
@@ -55,7 +61,7 @@ const {products} = useSelector((store) => store.basket);
       <div>
         <div className="flex-row">
           <input className="search-input" type="text" placeholder="Search" />{" "}
-          <Badge badgeContent={products.length} color="success"> <SlBasket className="icons" style={{ marginLeft: "10px" }} />
+          <Badge badgeContent={products.length} color="success" onClick={()=> dispatch(setDrawer(true))} > <SlBasket className="icons" style={{ marginLeft: "10px" }} />
           
           </Badge>
 

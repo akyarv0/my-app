@@ -40,6 +40,8 @@ export const basketSlicer = createSlice({
         state.products = [...state.products, action.payload];
         writeFromBasketToStorage(state.products);
       }
+     
+
 
       toastSuccessNotify("Product added successfully");
     },

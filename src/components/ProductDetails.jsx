@@ -6,6 +6,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";
 import { useState } from "react";
 import { addToBasket } from "../features/basketSlicer";
+import { toastErrorNotify } from "../helpers/ToastNotify";
 
 import "../css/ProductDetail.css";
 
@@ -17,9 +18,15 @@ const ProductDetails = () => {
   
 
  const handleAddToBasket = () => {
+  if (count === 0) {
+    toastErrorNotify("Please add product quantity");
+    return;
+  }
   const payload = { id, title, price, image, count };
   dispatch(addToBasket(payload));
+
 setCount(0);
+
 };
 
   const { products, selectedProduct } = useSelector((store) => store.products);

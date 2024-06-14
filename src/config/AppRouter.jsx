@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom'
 
 import Home from '../pages/Home'
 import ProductDetails from '../components/ProductDetails'
+import NotFound from '../pages/NotFound'
 
 const AppRouter = () => {
   return (
@@ -11,7 +12,7 @@ const AppRouter = () => {
 
           <Route path="/" element={<Home />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={< NotFound/>} />
 
         </Routes>
 

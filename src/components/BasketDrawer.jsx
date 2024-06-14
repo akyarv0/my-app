@@ -54,6 +54,7 @@ const BasketDrawer = () => {
         </tbody>
       </table>
       <h3 style={{ textAlign: "center", fontWeight: "bold",color:"green" }}>Total: {total}</h3>
+      <button className="button-purchase" onClick={() => toast("Thank you for your buying!")}>Purchase</button>
     </Drawer>
   );
 };

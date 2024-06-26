@@ -11,6 +11,7 @@ const AppRouter = ( {searchTerm}) => {
         <Routes>
 
           <Route path="/" element={<Home searchTerm={searchTerm} />} />
+          
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="*" element={< NotFound/>} />
 

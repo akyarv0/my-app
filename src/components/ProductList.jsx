@@ -9,6 +9,7 @@ const ProductList = ({ searchTerm }) => {
   console.log(searchTerm);
 
   const { products, loading } = useSelector((state) => state.products);
+  
 
   useEffect(() => {
     dispatch(getProducts());
@@ -19,6 +20,11 @@ const ProductList = ({ searchTerm }) => {
   );
 
   return (
+
+
+
+
+    
     <div className="product-list">
       {loading ? (
         <p>Loading...</p>

@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import appReducer from "../features/appSlicer";
 import productReducer from "../features/productSlicer";
 import basketReducer from "../features/basketSlicer";
+import categorySlicer from "../features/categorySlicer";
 
 const persistConfig = {
   key: 'root',
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   products: productReducer,
   basket: basketReducer,
+  categories: categorySlicer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

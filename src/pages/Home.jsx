@@ -1,10 +1,10 @@
 import React from "react";
 import ProductList from "../components/ProductList";
 
-const Home = () => {
+const Home = ({ searchTerm }) => {
   return (
     <div>
-      <ProductList />
+      <ProductList searchTerm={searchTerm} />
     </div>
   );
 };

@@ -4,7 +4,17 @@ import { getProducts } from "../features/productSlicer";
 import Product from "./Product";
 import "../css/ProductList.css"; // ProductList.css dosyasını ekledim
 
-const ProductList = () => {
+const ProductList = ( { searchTerm }) => {
+
+  const filteredProducts = useSelector((state) => {
+    if (searchTerm) {
+      return state.products.products.filter((product) =>
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else {
+      return state.products.products;
+    }
+  });
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   useEffect(() => {

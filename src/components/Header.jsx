@@ -16,12 +16,26 @@ import Badge from '@mui/material/Badge';
 
 
 const Header = () => {
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  
+
+
+
+
   const [theme, setTheme] = useState(true);
 
 
 const {products, drawer} = useSelector((store) => store.basket);
 
 const dispatch = useDispatch();
+
+const handleSearch = (e) => {
+  setSearchTerm(e.target.value);
+  
+
+};
 
 
 
@@ -60,7 +74,7 @@ const dispatch = useDispatch();
       </div>
       <div>
         <div className="flex-row">
-          <input className="search-input" type="text" placeholder="Search" />{" "}
+          <input className="search-input" type="text" placeholder="Search" value={searchTerm} onChange={handleSearch} />{" "}
           <Badge badgeContent={products.length} color="success" onClick={()=> dispatch(setDrawer(true))} > <SlBasket className="icons" style={{ marginLeft: "10px" }} />
           
           </Badge>
@@ -78,5 +92,7 @@ const dispatch = useDispatch();
     </div>
   );
 };
+
+
 
 export default Header;

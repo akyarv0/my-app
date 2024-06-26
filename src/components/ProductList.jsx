@@ -4,28 +4,32 @@ import { getProducts } from "../features/productSlicer";
 import Product from "./Product";
 import "../css/ProductList.css"; // ProductList.css dosyasını ekledim
 
-const ProductList = ( { searchTerm }) => {
-
-  const filteredProducts = useSelector((state) => {
-    if (searchTerm) {
-      return state.products.products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else {
-      return state.products.products;
-    }
-  });
+const ProductList = ({ searchTerm }) => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.products);
+
+  const { products, loading } = useSelector((state) => state.products);
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="product-list">
-      {products.map((product) => (
-        <Product key={product.id} product={product} />
-      ))}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <Product key={product.id} product={product} />
+          ))
+        ) : (
+          <p>No products found.</p> // Eğer arama sonucu boşsa
+        )
+      )}
     </div>
   );
 };

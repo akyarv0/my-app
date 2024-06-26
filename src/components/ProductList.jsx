@@ -6,6 +6,7 @@ import "../css/ProductList.css"; // ProductList.css dosyasını ekledim
 
 const ProductList = ({ searchTerm }) => {
   const dispatch = useDispatch();
+  console.log(searchTerm);
 
   const { products, loading } = useSelector((state) => state.products);
 

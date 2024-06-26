@@ -15,9 +15,9 @@ import Badge from '@mui/material/Badge';
 
 
 
-const Header = () => {
+const Header = ({ searchTerm, setSearchTerm}) => {
 
-  const [searchTerm, setSearchTerm] = useState("");
+
 
   
 
@@ -37,6 +37,7 @@ const handleSearch = (e) => {
 
 };
 
+console.log(searchTerm);
 
 
 

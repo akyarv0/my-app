@@ -1,26 +1,54 @@
-// In Category.jsx
-import React from 'react';
-import { useDispatch } from "react-redux";
-import { getProductsByCategory } from "../features/categorySlicer";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories, getProducts, getProductsByCategory, setSelectedCategory } from "../features/categorySlicer";
+import "../css/Category.css"; // Import the CSS file
 
 const Category = () => {
-    const dispatch = useDispatch();
-    const { categories } = useSelector((store) => store.categories);
+  const dispatch = useDispatch();
+  const { categories, loadingCategories, loadingProducts, selectedCategory } = useSelector((state) => state.categories);
 
-    const handleCategoryClick = (category) => {
-        dispatch(getProductsByCategory(category));
-    };
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getProducts());
+  }, [dispatch]);
 
-    return (
-        <div>
+  const handleCategoryClick = (category) => {
+    if (category === "All") {
+      dispatch(setSelectedCategory(null));
+      dispatch(getProducts());
+    } else {
+      dispatch(setSelectedCategory(category));
+      dispatch(getProductsByCategory(category));
+    }
+  };
+
+  return (
+    <div>
+      <div className="category" style={{ display: "flex", justifyContent: "center" , gap: "10px" }}>
+        {loadingCategories ? (
+          <p>Loading categories...</p>
+        ) : (
+          <div style={{display: "flex", gap: "10px",marginTop:"20px" }}>
+            <button
+              className={!selectedCategory ? "active" : ""}
+              onClick={() => handleCategoryClick("All")}
+            >
+              All
+            </button>
             {categories.map((category) => (
-                <div key={category} onClick={() => handleCategoryClick(category)}>
-                    {category}
-                </div>
+              <button
+                key={category}
+                className={selectedCategory === category ? "active" : ""}
+                onClick={() => handleCategoryClick(category)}
+              >
+                {category}
+              </button>
             ))}
-        </div>
-    );
-}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default Category;

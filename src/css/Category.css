@@ -1,0 +1,33 @@
+.category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .category button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px;
+   
+  }
+  
+  .category button:hover {
+    background-color: #768a5f;
+  }
+  
+  .category button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(73, 70, 61, 0.747);
+  }
+  
+  .category button.active {
+    background-color: #a36a43;
+  }
+  

@@ -11,13 +11,18 @@ const initialState = {
 
 const BASE_URL = "https://fakestoreapi.com";
 
-export const getCategories = createAsyncThunk("getCategories", async () => {
+export const getCategories = createAsyncThunk("categories/getCategories", async () => {
   const response = await axios.get(`${BASE_URL}/products/categories`);
   return response.data;
 });
 
+export const getProducts = createAsyncThunk("products/getProducts", async () => {
+  const response = await axios.get(`${BASE_URL}/products`);
+  return response.data;
+});
+
 export const getProductsByCategory = createAsyncThunk(
-  "getProductsByCategory",
+  "products/getProductsByCategory",
   async (category) => {
     const response = await axios.get(`${BASE_URL}/products/category/${category}`);
     return response.data;
@@ -39,6 +44,13 @@ export const categorySlicer = createSlice({
     builder.addCase(getCategories.fulfilled, (state, action) => {
       state.categories = action.payload;
       state.loadingCategories = false;
+    });
+    builder.addCase(getProducts.pending, (state) => {
+      state.loadingProducts = true;
+    });
+    builder.addCase(getProducts.fulfilled, (state, action) => {
+      state.products = action.payload;
+      state.loadingProducts = false;
     });
     builder.addCase(getProductsByCategory.pending, (state) => {
       state.loadingProducts = true;
